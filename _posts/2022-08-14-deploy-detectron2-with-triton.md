@@ -1,5 +1,5 @@
 ---
-title:  "Deploy Detectron2 models with Triton!"
+title:  "Deploy Detectron2 models with Triton"
 date:   2022-08-14 14:00:00 +0700
 tags:
     - detectron2
