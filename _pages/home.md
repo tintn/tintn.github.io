@@ -11,4 +11,3 @@ I'm Machine Learning Engineer and a Physicist
 
 Want to have a chat?
 - I'm always open for interesting conversations. If you are interested in MLOps or machine learning in general, feel free to get in touch!
-- I'm best reached via [email](mailto:trung.tin.nguyen0309@gmail.com)
