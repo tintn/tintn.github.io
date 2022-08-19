@@ -35,3 +35,4 @@ gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 source "https://rubygems.org"
 
 gem "jekyll-include-cache", group: :jekyll_plugins
+gem 'jekyll-seo-tag'

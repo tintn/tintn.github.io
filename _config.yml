@@ -23,6 +23,7 @@
 plugins:
   - jekyll-feed
   - jekyll-include-cache
+  - jekyll-seo-tag
 
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 
@@ -327,3 +328,5 @@ defaults:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+google_site_verification: google-site-verification=kPWpwHNYESUJRAAKvEjr6dNEOKr1fM3Jp2aKYyViVGs
