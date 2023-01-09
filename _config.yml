@@ -121,7 +121,7 @@ analytics:
 author:
   name             : 
   avatar           : "/assets/images/tintn.jpeg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Machine Learning practitioner with strong interest in MLOps and Machine Learning in Production"
+  bio              : "Machine Learning Engineer with strong interest in MLOps and Machine Learning in Production"
   location         : "Vietnam"
   email            : "trung.tin.nguyen0309@gmail.com"
   links:
