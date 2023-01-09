@@ -1,5 +1,5 @@
 ---
-title:  "Scalable Serving to Kubernetes with Seldon Core: A tutorial"
+title:  "Scalable Serving with Kubernetes and Seldon Core: A tutorial"
 date:   2023-01-09 23:00:00 +0700
 tags:
     - pytorch
@@ -12,7 +12,7 @@ tags:
 ## Overview
 
 <figure>
-	<img src="/assets/posts/Scalable-Serving-In-Kubernetes-with-Seldon-Core/ml-k8s.png">
+	<img src="/assets/posts/Scalable-Serving-with-Kubernetes-and-Seldon-Core/ml-k8s.png">
 </figure>
 
 Deploying trained models to production is an essential step in most of ML applications. It’s where the models actually show their values by providing their predictions for customers or other systems.
@@ -27,7 +27,7 @@ In this tutorial, we’re going to learn how to deploy ML models in Kubernetes c
 
 ##  Train a PyTorch model
 
-We need to have a model to work through the deployment process. We use the model from a [tutorial](https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html) from the official PyTorch website. It’s a simple image classification model that can run with CPU easily, so we can test the whole deployment process on local machines like your laptop.
+We need to have a model to work through the deployment process. We use the model from this [tutorial](https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html) from the official PyTorch website. It’s a simple image classification model that can run with CPU easily, so we can test the whole deployment process on local machines like your laptop.
 
 Assume you’re in the `toy-model` folder of this [repo](https://github.com/tintn/ml-model-deployment-tutorials). You can train the model on the CIFAR10 dataset with:
 
