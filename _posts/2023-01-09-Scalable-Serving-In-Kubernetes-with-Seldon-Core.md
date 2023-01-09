@@ -1,3 +1,14 @@
+---
+title:  "Scalable Serving In Kubernetes with Seldon Core: A tutorial"
+date:   2023-01-09 23:00:00 +0700
+tags:
+    - pytorch
+    - triton
+    - seldon-core
+    - kubernetes
+    - autoscaling
+---
+
 # Scalable Serving In Kubernetes with Seldon Core: A tutorial
 
 Deploying trained models to production is an essential step in most of ML applications. It’s where the models actually show their values by providing their predictions for customers or other systems.
