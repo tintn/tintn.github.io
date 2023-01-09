@@ -9,8 +9,6 @@ tags:
     - autoscaling
 ---
 
-# Scalable Serving In Kubernetes with Seldon Core: A tutorial
-
 Deploying trained models to production is an essential step in most of ML applications. It’s where the models actually show their values by providing their predictions for customers or other systems.
 
 Deploying a model can be as straight-forward as implementing a Flask server then export its endpoints for users to call. However, having a system that can robustly and reliably serve large amount of requests with strict requirements in response time or throughput is not trivial.
@@ -19,7 +17,9 @@ For medium and large companies, it’s very likely they require the systems to b
 
 In this tutorial, we’re going to learn how to deploy ML models in Kubernetes clusters with Seldon Core. We’ll also learn to implement autoscaling for our deployment with HPA and KEDA. The code for this tutorial can be found from this [repo](https://github.com/tintn/ml-model-deployment-tutorials).
 
-![ml-k8s](/assets/posts/Scalable-Serving-In-Kubernetes-with-Seldon-Core/ml-k8s.png)
+<figure>
+	<img src="/assets/posts/Scalable-Serving-In-Kubernetes-with-Seldon-Core/ml-k8s.png">
+</figure>
 
 # Train a PyTorch model
 
