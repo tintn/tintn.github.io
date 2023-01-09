@@ -19,7 +19,7 @@ For medium and large companies, it’s very likely they require the systems to b
 
 In this tutorial, we’re going to learn how to deploy ML models in Kubernetes clusters with Seldon Core. We’ll also learn to implement autoscaling for our deployment with HPA and KEDA. The code for this tutorial can be found from this [repo](https://github.com/tintn/ml-model-deployment-tutorials).
 
-![Untitled](Scalable%20Serving%20In%20Kubernetes%20with%20Seldon%20Core%20A%20%203a963e106a0a4ecdbe29dc767f6ef775/Untitled.png)
+![ml-k8s](/assets/posts/Scalable-Serving-In-Kubernetes-with-Seldon-Core/ml-k8s.png)
 
 # Train a PyTorch model
 
