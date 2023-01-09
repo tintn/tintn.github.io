@@ -9,6 +9,12 @@ tags:
     - autoscaling
 ---
 
+## Overview
+
+<figure>
+	<img src="/assets/posts/Scalable-Serving-In-Kubernetes-with-Seldon-Core/ml-k8s.png">
+</figure>
+
 Deploying trained models to production is an essential step in most of ML applications. It’s where the models actually show their values by providing their predictions for customers or other systems.
 
 Deploying a model can be as straight-forward as implementing a Flask server then export its endpoints for users to call. However, having a system that can robustly and reliably serve large amount of requests with strict requirements in response time or throughput is not trivial.
@@ -17,11 +23,9 @@ For medium and large companies, it’s very likely they require the systems to b
 
 In this tutorial, we’re going to learn how to deploy ML models in Kubernetes clusters with Seldon Core. We’ll also learn to implement autoscaling for our deployment with HPA and KEDA. The code for this tutorial can be found from this [repo](https://github.com/tintn/ml-model-deployment-tutorials).
 
-<figure>
-	<img src="/assets/posts/Scalable-Serving-In-Kubernetes-with-Seldon-Core/ml-k8s.png">
-</figure>
 
-# Train a PyTorch model
+
+##  Train a PyTorch model
 
 We need to have a model to work through the deployment process. We use the model from a [tutorial](https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html) from the official PyTorch website. It’s a simple image classification model that can run with CPU easily, so we can test the whole deployment process on local machines like your laptop.
 
@@ -109,7 +113,7 @@ aws s3 cp --recursive cifar10-model s3://<YOUR_BUCKET>/cifar10-model
 
 Replace `<YOUR_BUCKET>` to the name of your bucket. We now have the model repository on AWS S3, we can start to deploy the model.
 
-# Deploy models with Seldon Core
+## Deploy models with Seldon Core
 
 We’ll deploy the model to a Kubernetes cluster with Seldon Core, a framework specializing in ML model deployment and monitoring. Let’s create a local Kubernetes cluster, so we can test the deployment process using our local machine.
 
@@ -223,7 +227,7 @@ If your deployment name or model names are different, you can adjust the deploym
 
 We’ve deployed our custom model with Seldon Core and tested it by sending inference requests to the model. In the next section, we’ll explore how to scale the deployment to handle more users or higher traffic.  
 
-# Pod Autoscaling with HPA
+## Pod Autoscaling with HPA
 
 HPA (Horizontal Pod Autoscaling) is an important feature of Kubernetes when it comes to scalability. It can add more pods to a deployment when certain metrics exceed their thresholds (e.g. CPU or memory), so we have more resources to process the incoming traffic.
 
@@ -307,7 +311,7 @@ kubectl get pods
 
 In this section, we’ve learned how to scale the number of pods up and down based on CPU usage. In the next section, we’ll use KEDA to scale our deployment more flexibly based on custom metrics.
 
-# Pod Autoscaling with KEDA
+## Pod Autoscaling with KEDA
 
 KEDA can fetch metrics from many sources (they are called scalers), see the list of supported scalers [here](https://keda.sh/docs/2.9/scalers/). We’ll set up KEDA to fetch metrics from a Prometheus server. The Prometheus server collects metrics from Seldon deployments in the cluster. The collected metrics are later used to trigger pod scaling.
 
@@ -406,7 +410,7 @@ kubectl get pods -w
 # cifar10-default-0-cifar10-pytorch-5dc484599c-ljk74   0/3     Terminating   0             6m3s
 ```
 
-# Conclusion
+## Conclusion
 
 We’ve learned how to deploy machine learning models to Kubernetes clusters with Seldon Core. Although we focused mostly on deploying PyTorch models in this tutorial, the same steps can be applied to deploying models from other frameworks with minor changes.
 
