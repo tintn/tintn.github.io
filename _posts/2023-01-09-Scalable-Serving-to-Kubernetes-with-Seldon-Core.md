@@ -1,5 +1,5 @@
 ---
-title:  "Scalable Serving In Kubernetes with Seldon Core: A tutorial"
+title:  "Scalable Serving to Kubernetes with Seldon Core: A tutorial"
 date:   2023-01-09 23:00:00 +0700
 tags:
     - pytorch
