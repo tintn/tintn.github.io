@@ -17,16 +17,12 @@ tags:
 
 Deploying trained models to production is an essential step in most of ML applications. It’s where the models actually show their values by providing their predictions for customers or other systems.
 
-Deploying a model can be as straight-forward as implementing a Flask server then export its endpoints for users to call. However, having a system that can robustly and reliably serve large amount of requests with strict requirements in response time or throughput is not trivial.
+Deploying a model can be as straight-forward as implementing a Flask server and then exporting its endpoints for users to call. However, having a system that can robustly and reliably serve a large number of requests with strict requirements in response time or throughput is not trivial.
 
-For medium and large companies, it’s very likely they require the systems to be able to scale to process heavier workload without significantly changing the codebase. Perhaps the company is growing over time and they need a system that can handle growing number of requests (this characteristic is scalability). Or the company has unstable traffic, the traffic is fluctuating over the course of a week and the company want the system to be able to adapt with the traffic fluctuation (this characteristic is elasticity). These characteristics can be achieved if the systems have the ability to scale up and down based on the traffic volume.
+For medium and large companies, it’s very likely they require the systems to be able to scale to process heavier workloads without significantly changing the codebase. Perhaps the company is growing over time and they need a system that can handle the growing number of requests (this characteristic is scalability). Or the company has unstable traffic, the traffic fluctuates over the course of a week and the company wants the system to be able to adapt to the traffic fluctuation (this characteristic is elasticity). These characteristics can be achieved if the systems have the ability to scale up and down based on the traffic volume.
 
-In this tutorial, we’re going to learn how to deploy ML models in Kubernetes clusters with Seldon Core. We’ll also learn to implement autoscaling for our deployment with HPA and KEDA. The code for this tutorial can be found from this [repo](https://github.com/tintn/ml-model-deployment-tutorials).
-
-
-
+In this tutorial, we’re going to learn how to deploy ML models in Kubernetes clusters with Seldon Core. We’ll also learn to implement autoscaling for our deployment with HPA and KEDA. The code for this tutorial can be found in this [repo](https://github.com/tintn/ml-model-deployment-tutorials).
 ##  Train a PyTorch model
-
 We need to have a model to work through the deployment process. We use the model from this [tutorial](https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html) from the official PyTorch website. It’s a simple image classification model that can run with CPU easily, so we can test the whole deployment process on local machines like your laptop.
 
 Assume you’re in the `toy-model` folder of this [repo](https://github.com/tintn/ml-model-deployment-tutorials). You can train the model on the CIFAR10 dataset with:
@@ -38,7 +34,7 @@ python train.py
 
 Seldon Core uses [Triton Inference Server](https://github.com/triton-inference-server/server) to serve PyTorch models, so we need to prepare the model in a format that it can be served with Triton. First, we need to export the model to TorchScript (it’s also possible to serve PyTorch models with Triton’s [python backend](https://github.com/triton-inference-server/python_backend), but it’s generally less efficient and more complicated to deploy).
 
-There’re two methods to export a model to TorchScript: tracing and scripting. Both of them are supported by PyTorch. Which method is better is still controversial, this [article](https://ppwwyyxx.com/blog/2022/TorchScript-Tracing-vs-Scripting/) discusses pros and cons of each method. We’ll use the tracing method to export the model:
+There’re two methods to export a model to TorchScript: tracing and scripting. Both of them are supported by PyTorch. Which method is better is still controversial, this [article](https://ppwwyyxx.com/blog/2022/TorchScript-Tracing-vs-Scripting/) discusses the pros and cons of each method. We’ll use the tracing method to export the model:
 
 ```bash
 python export_to_ts.py -c model.pth -o model.ts
@@ -193,7 +189,7 @@ Replace  `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` with your actual AWS ac
 kubectl apply -f secret.yaml
 ```
 
-We can deploy the model with this [manifest](https://github.com/tintn/ml-model-deployment-tutorials/blob/main/scalable-serving/cifar10-deploy.yaml), notice the created secret is refered in the manifest with the `envSecretRefName` key. Also make sure that `spec.predictors[].graph.name` matches the model name you uploaded to your model repository. Apply the manifest to create a deployment:
+We can deploy the model with this [manifest](https://github.com/tintn/ml-model-deployment-tutorials/blob/main/scalable-serving/cifar10-deploy.yaml), notice the created secret is referred to in in the manifest with the `envSecretRefName` key. Make sure that `spec.predictors[].graph.name` matches the model name you uploaded to your model repository. Apply the manifest to create a deployment:
 
 ```bash
 kubectl apply -f cifar10-deploy.yaml
@@ -291,7 +287,7 @@ Now we can test the deployed model with our [test script](https://github.com/tin
 locust -f test.py --headless -u 100 -r 10 --run-time 180 -H http://localhost:8080
 ```
 
-Monitoring the current metric value with `kubectl get hpa -w`, you can see after a while the metrics value exceeds the threshold, and HPA will trigger the creation of a new pod:
+Monitoring the current metric value with `kubectl get hpa -w`, you can see after a while the metric value exceeds the threshold, and HPA will trigger the creation of a new pod:
 
 ```bash
 kubectl get pods
@@ -412,6 +408,6 @@ kubectl get pods -w
 
 ## Conclusion
 
-We’ve learned how to deploy machine learning models to Kubernetes clusters with Seldon Core. Although we focused mostly on deploying PyTorch models in this tutorial, the same steps can be applied to deploying models from other frameworks with minor changes.
+We’ve learned how to deploy machine learning models to Kubernetes clusters with Seldon Core. Although we mainly focused on deploying PyTorch models in this tutorial, the same steps can be applied to deploying models from other frameworks with minor changes.
 
 We’ve also made the deployments scalable using HPA and KEDA. Compared to HPA, KEDA provides more flexible ways to scale the system based on Prometheus metrics (or other supported scalers from KEDA). Technically, we can implement any scaling rules from metrics that can be fetched from the Prometheus server.
